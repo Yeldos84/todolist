@@ -7,7 +7,10 @@
 <body>
 
     <h1>Todo</h1>
-     <form method="post">{% csrf_token %}
+     <form style="
+    display: flex;
+    gap: 10px;
+    align-items: center;" method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="ОК">
     </form>

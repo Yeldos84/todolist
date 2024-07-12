@@ -24,11 +24,8 @@ class TodoViewCreate(CreateView):
 class TodoShow(ListView):
     model = TodoModelCreate
     template_name = 'todolist/show.html'
-    lst = []
-    lst.append(list(TodoModelCreate.objects.values_list('add', flat=True)))
-    lsttostr = [v for v in lst[0]]
     extra_context = {
-        'all': ', '.join(lsttostr)
+        'all': TodoModelCreate.objects.values_list('add', flat=True)
     }
 
 
