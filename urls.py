@@ -6,12 +6,14 @@ from .views import TodoUserView
 urlpatterns = [
     # ex: /todolist/
     # Стартовая страница
-    path("", views.todo, name="todo"),
+    path("", views.TodoViewCreate.as_view(), name="todo"),
     path("pdf/", views.some_view, name="some_view"),
     path("users/", views.TodoUserView.as_view(), name="users"),
     path("succes/", views.TodoLoginView.as_view(), name="succes"),
     path("succes_login/", views.succes_login, name="succes_login"),
     path("404/", views.notfound, name="404"),
+    path("delete/", views.tododelete, name="delete"),
+    path("show/", views.TodoShow.as_view(), name="show"),
 
     #URL с помощью регулярных выражений
     re_path(r'^info/about', views.about, name="about"),

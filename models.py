@@ -10,3 +10,9 @@ class TodoUsers(models.Model):
     def __str__(self):
         return self.login
 
+
+class TodoModelCreate(models.Model):
+    add = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.add

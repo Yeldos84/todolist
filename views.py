@@ -1,9 +1,10 @@
 from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView, DeleteView
+from django.views.generic.list import ListView
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
-from .models import TodoUsers
+from .models import TodoUsers, TodoModelCreate
 from .forms import TodoUsersForm
 from django.core.exceptions import ObjectDoesNotExist, FieldDoesNotExist
 
@@ -12,8 +13,33 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 
 
-def todo(request):
-    return HttpResponse('ToDo APPS')
+class TodoViewCreate(CreateView):
+    model = TodoModelCreate
+    fields = '__all__'
+    template_name = 'todolist/home.html'
+    success_url = '/todolist/'
+    extra_context = {'add': TodoModelCreate.objects.all().last}
+
+
+class TodoShow(ListView):
+    model = TodoModelCreate
+    template_name = 'todolist/show.html'
+    lst = []
+    lst.append(list(TodoModelCreate.objects.values_list('add', flat=True)))
+    lsttostr = [v for v in lst[0]]
+    extra_context = {
+        'all': ', '.join(lsttostr)
+    }
+
+
+def tododelete(request):
+    TodoModelCreate.objects.all().delete()
+    return redirect(to='/todolist')
+
+
+
+# def todo(request):
+#     return HttpResponse('ToDo APPS')
 
 
 def about(request):
@@ -75,6 +101,8 @@ class TodoLoginView(FormView):
     form_class = TodoUsersForm
     # success_url = '/todolist/succes_login'
     extra_context = {'login': TodoUsers.objects.all().last}
+
+
 
 
     def form_valid(self, form):
