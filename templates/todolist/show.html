@@ -6,7 +6,9 @@
 </head>
 <body>
     <h1>All Tasks</h1>
-    <p>{{ all }}</p>
+    {% for a in all%}
+        <li>{{a.add}}</li>
+    {% endfor %}
     <hr>
      <p><a href="/todolist/delete">Delete</a></p>
 

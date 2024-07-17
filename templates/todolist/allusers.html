@@ -1,0 +1,13 @@
+{% extends "todolist/base.html" %}
+
+{% block title %}All users{% endblock title %}
+
+{% block users %}
+
+<h3>All users:</h3>
+{% for alluser in allusers %}
+    <li><a href="{% url 'showaoneuser' alluser.id %}">{{ alluser }}</a></li>
+{% endfor %}
+<button><a href="/todolist/base">Back</a></button>
+{% endblock users %}
+

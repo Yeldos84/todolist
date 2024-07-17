@@ -21,11 +21,12 @@ class TodoViewCreate(CreateView):
     extra_context = {'add': TodoModelCreate.objects.all().last}
 
 
+
 class TodoShow(ListView):
     model = TodoModelCreate
     template_name = 'todolist/show.html'
     extra_context = {
-        'all': TodoModelCreate.objects.values_list('add', flat=True)
+        'all': TodoModelCreate.objects.all()
     }
 
 
@@ -85,11 +86,40 @@ def succes_login(request):
 
 def notfound(request):
     return render(request, 'todolist/404.html')
+
+
+def render_base_template(request):
+    return render(request, 'todolist/base.html')
+
+
 class TodoUserView(CreateView):
     model = TodoUsers
     fields = '__all__'
     template_name = 'todolist/index.html'
     success_url = '/todolist/succes'
+
+
+class TodoShowAllUsers(CreateView):
+    model = TodoUsers
+    fields = '__all__'
+    template_name = 'todolist/allusers.html'
+    extra_context = {
+        'allusers': TodoUsers.objects.all()
+    }
+
+
+
+def show_one_user(request, id):
+    context = {'oneuser': TodoUsers.objects.get(id=id)}
+    return render(request, 'todolist/oneusers.html', context)
+
+# class TodoShowOnelUser(CreateView):
+#     model = TodoUsers
+#     fields = '__all__'
+#     template_name = 'todolist/oneusers.html'
+#     extra_context = {
+#         'oneusers': TodoUsers.objects.all()
+#     }
 
 
 class TodoLoginView(FormView):

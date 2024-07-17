@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Todo</title>
-</head>
-<body>
+{% extends "todolist/base.html" %}
+
+{% block title %}User registration{% endblock title %}
+
+{% block regusers %}
     <h1>Регистрация</h1>
     <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="ОК">
     </form>
-</body>
-</html>
+{% endblock regusers %}

@@ -1,0 +1,12 @@
+{% extends "todolist/base.html" %}
+
+{% block title %}One users{% endblock title %}
+
+{% block oneusers %}
+
+<h3>One users:</h3>
+ <p>Usename: {{ oneuser|upper }}</p>
+
+<button><a href="/todolist/showallusers">Back</a></button>
+{% endblock oneusers %}
+

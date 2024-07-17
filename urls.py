@@ -14,6 +14,9 @@ urlpatterns = [
     path("404/", views.notfound, name="404"),
     path("delete/", views.tododelete, name="delete"),
     path("show/", views.TodoShow.as_view(), name="show"),
+    path("base/", views.render_base_template, name="base"),
+    path("showallusers/", views.TodoShowAllUsers.as_view(), name="showallusers"),
+    path("showaoneuser/<int:id>", views.show_one_user, name="showaoneuser"),
 
     #URL с помощью регулярных выражений
     re_path(r'^info/about', views.about, name="about"),
