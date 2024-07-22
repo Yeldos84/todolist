@@ -1,8 +1,16 @@
-body{
+.mainbody{
     background: bisque;
 }
 
 .menu{
     margin: 10px;
     padding: 10px;
+}
+
+li{
+    list-style: none;
+}
+
+.base_h1{
+    color: red;
 }

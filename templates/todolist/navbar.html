@@ -1,0 +1,10 @@
+{% extends "todolist/base.html" %}
+
+{% block title %}Nav bar{% endblock title %}
+
+{% block navbar %}
+
+    <nav class="menu"><a href="{% url 'base' %}">Main</a> | <a href="/todolist/users">User registration</a> | <a href="/todolist/showallusers">All users</a>
+    | <a href="/todolist/captcha">Test Captcha</a></nav>
+
+{% endblock navbar %}

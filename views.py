@@ -91,12 +91,15 @@ def notfound(request):
 def render_base_template(request):
     return render(request, 'todolist/base.html')
 
+def  render_navbar(request):
+    return render(request, 'todolist/navbar.html')
 
 class TodoUserView(CreateView):
     model = TodoUsers
     fields = '__all__'
     template_name = 'todolist/index.html'
     success_url = '/todolist/succes'
+
 
 
 class TodoShowAllUsers(CreateView):
@@ -129,6 +132,10 @@ class TodoLoginView(FormView):
     # success_url = '/todolist/succes_login'
     extra_context = {'login': TodoUsers.objects.all().last}
 
+class Captcha(FormView):
+    model = TodoUsers
+    form_class = TodoUsersForm
+    template_name = 'todolist/index.html'
 
 
 

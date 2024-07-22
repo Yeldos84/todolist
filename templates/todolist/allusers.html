@@ -6,7 +6,9 @@
 
 <h3>All users:</h3>
 {% for alluser in allusers %}
-    <li><a href="{% url 'showaoneuser' alluser.id %}">{{ alluser }}</a></li>
+    <li>{{forloop.counter}}. <a href="{% url 'showaoneuser' alluser.id %}">{{ alluser|title }}</a></li>
+{% empty %}
+    <li>Sorry empty users list!</li>
 {% endfor %}
 <button><a href="/todolist/base">Back</a></button>
 {% endblock users %}

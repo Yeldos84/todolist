@@ -17,6 +17,8 @@ urlpatterns = [
     path("base/", views.render_base_template, name="base"),
     path("showallusers/", views.TodoShowAllUsers.as_view(), name="showallusers"),
     path("showaoneuser/<int:id>", views.show_one_user, name="showaoneuser"),
+    path("captcha/", views.Captcha.as_view(), name="captcha"),
+    path("nav/", views.render_navbar, name="nav"),
 
     #URL с помощью регулярных выражений
     re_path(r'^info/about', views.about, name="about"),
