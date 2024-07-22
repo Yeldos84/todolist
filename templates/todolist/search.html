@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Find login for you keyword <u style="color: red;">{{key}}</u></h1>
+
+    {% if bbs %}
+        {% for l in bbs %}
+            <li>{{l.login}}</li>
+        {% endfor %}
+    {% else %}
+        <p>Not found</p>
+    {% endif %}
+</body>
+
+</html>

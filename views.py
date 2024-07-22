@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, FormView, DeleteView
 from django.views.generic.list import ListView
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
 from .models import TodoUsers, TodoModelCreate
-from .forms import TodoUsersForm
+from .forms import TodoUsersForm, SearchForm
 from django.core.exceptions import ObjectDoesNotExist, FieldDoesNotExist
 
 import io
@@ -136,8 +136,21 @@ class Captcha(FormView):
     model = TodoUsers
     form_class = TodoUsersForm
     template_name = 'todolist/index.html'
+    success_url = '/todolist/succes'
 
-
+def search(request):
+    if request.method == 'POST':
+        sf = SearchForm(request.POST)
+        if sf.is_valid():
+            keyword = sf.cleaned_data['keyword']
+            # text_id = sf.cleaned_data['text_id'].pk
+            bbs = list(TodoUsers.objects.filter(login__icontains=keyword))
+            context = {'bbs':bbs, 'key':keyword}
+            return render(request, 'todolist/search.html', context)
+    else:
+        sf = SearchForm()
+        context = {'form':sf}
+        return render(request, 'todolist/index.html', context)
 
     def form_valid(self, form):
         # print(type(form.cleaned_data['login']))

@@ -10,7 +10,7 @@
 <h1 class="base_h1">Todo list websait</h1>
 <body class="mainbody">
     <nav class="menu"><a href="{% url 'base' %}">Main</a> | <a href="/todolist/users">User registration</a> | <a href="/todolist/showallusers">All users</a>
-    | <a href="/todolist/captcha">Test Captcha</a></nav>
+    | <a href="/todolist/captcha">Test Captcha</a> | <a href="/todolist/search">Test search</a></nav>
 
     <div>{% block navbar %}{% endblock navbar %}</div>
     <div>{% block users %}{% endblock users %}</div>
@@ -22,4 +22,5 @@
 
 </body>
      {% include 'todolist/footer.html'%}
+
 </html>

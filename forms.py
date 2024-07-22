@@ -13,3 +13,6 @@ class TodoUsersForm(forms.Form):
     captcha = CaptchaField()
 
 
+class SearchForm(forms.Form):
+    keyword = forms.CharField(max_length=100, label='search login')
+    # text_id = forms.ModelChoiceField(queryset=TodoUsers.objects.all(), label='text_id label')
