@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 from . import views
 from .views import TodoUserView
-
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     # ex: /todolist/
@@ -30,5 +30,11 @@ urlpatterns = [
     # начало и конец должно быть info
     re_path(r'^contact/\d+', views.contact, name="contact"),
     # после contact принимает только цифры
+
+
+    #Authenticated urls - LoginView
+    path("login/", LoginView.as_view(template_name = 'todolist/login.html'), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path("login_ok/", views.render_login_ok, name="login_ok"),
 
 ]

@@ -1,0 +1,24 @@
+{% extends "todolist/base.html" %}
+
+{% block title %}Login page{% endblock title %}
+
+{% block login %}
+    <h1>Login page</h1>
+    {% if user.is_authenticated %}
+    <p>You logined</p>
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Log out</button>
+   </form>
+    {% else %}
+    <form method="post">
+    {% csrf_token %}
+        {{ form.as_p}}
+        <input type="submit" value="Enter">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    {% endif %}
+
+
+{% include 'todolist/ok.html' %}
+{% endblock login %}

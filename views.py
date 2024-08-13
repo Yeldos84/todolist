@@ -94,6 +94,9 @@ def render_base_template(request):
 def  render_navbar(request):
     return render(request, 'todolist/navbar.html')
 
+def render_login_ok(request):
+    return render(request, 'todolist/login_ok.html')
+
 class TodoUserView(CreateView):
     model = TodoUsers
     fields = '__all__'
@@ -129,7 +132,7 @@ class TodoLoginView(FormView):
     model = TodoUsers
     template_name = 'todolist/succes.html'
     form_class = TodoUsersForm
-    # success_url = '/todolist/succes_login'
+    success_url = '/todolist/succes_login'
     extra_context = {'login': TodoUsers.objects.all().last}
 
 class Captcha(FormView):
