@@ -10,13 +10,19 @@
 <h1 class="base_h1">Todo list websait</h1>
 <body class="mainbody">
     <nav class="menu"><a href="{% url 'base' %}">Main</a> | <a href="/todolist/users">User registration</a> | <a href="/todolist/showallusers">All users</a>
-    | <a href="/todolist/captcha">Test Captcha</a> | <a href="/todolist/search">Test search</a> | <a href="/todolist/login">Test LoginView</a></nav>
+    | <a href="/todolist/captcha">Test Captcha</a> | <a href="/todolist/search">Test search</a> | <a href="/todolist/login">Test LoginView</a>
+        | <a href="/todolist/change_password">Test Change Password</a>
+    | <a href="/todolist/password_reset">Test Password Reset</a>
+    | <a href="/todolist/google">Test Google+</a></nav>
 
     <div>{% block navbar %}{% endblock navbar %}</div>
     <div>{% block users %}{% endblock users %}</div>
     <div>{% block regusers %}{% endblock regusers %}</div>
     <div>{% block oneusers %}{% endblock oneusers %}</div>
     <div>{% block login %}{% endblock login %}</div>
+    <div>{% block cp %}{% endblock cp %}</div>
+    <div>{% block pcd %}{% endblock pcd %}</div>
+    <div>{% block pr %}{% endblock pr %}</div>
 
 
 

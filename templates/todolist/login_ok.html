@@ -6,10 +6,13 @@
 </head>
 <body>
     <h2>Регистрация прошла успешно!</h2>
+    <p>Welcome {{user.first_name}}, <a href="#">{{user.email}}</a></p>
 
     <form action="{% url 'logout' %}" method="post">
       {% csrf_token %}
       <button type="submit">Log out</button>
    </form>
+    <hr>
+    <a href="{% url 'base' %}">Back</a>
 </body>
 </html>

@@ -1,7 +1,7 @@
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from . import views
 from .views import TodoUserView
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView, PasswordResetDoneView
 
 urlpatterns = [
     # ex: /todolist/
@@ -36,5 +36,13 @@ urlpatterns = [
     path("login/", LoginView.as_view(template_name = 'todolist/login.html'), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("login_ok/", views.render_login_ok, name="login_ok"),
+    path("change_password/", PasswordChangeView.as_view(template_name='todolist/change_password.html',
+                                                        success_url='/todolist/change_password_done'), name="change_password"),
+    path("change_password_done/", PasswordChangeDoneView.as_view(template_name='todolist/password_changechange_done.html'), name="change_password_done"),
+    path("password_reset/", PasswordResetView.as_view(template_name='todolist/password_reset.html',
+                                                      success_url='/todolist/password_reset_done'), name="password_reset"),
+    path("password_reset_done/", PasswordResetDoneView.as_view(template_name='todolist/password_reset_done.html',
+                                                      ), name="password_reset_done"),
+    path('google', views.google, name='google'),
 
 ]

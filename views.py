@@ -12,6 +12,7 @@ import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 
+from django.contrib.auth.decorators import login_required
 
 class TodoViewCreate(CreateView):
     model = TodoModelCreate
@@ -84,6 +85,11 @@ def succes_login(request):
     # context = {'login': TodoUsers.objects.all().last}
     return render(request, 'todolist/succes_login.html')
 
+
+def google(request):
+    # context = {'login': TodoUsers.objects.all().last}
+    return render(request, 'todolist/google.html')
+
 def notfound(request):
     return render(request, 'todolist/404.html')
 
@@ -141,6 +147,7 @@ class Captcha(FormView):
     template_name = 'todolist/index.html'
     success_url = '/todolist/succes'
 
+@login_required(login_url='login')
 def search(request):
     if request.method == 'POST':
         sf = SearchForm(request.POST)
